@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inmobiliaria El Hogar</title>
+  <style>
+    :root {
+      --main-color: #2C3E50;
+      --accent-color: #E67E22;
+      --bg-light: #f9f9f9;
+      --text-dark: #333;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    header {
+      background-color: var(--main-color);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://source.unsplash.com/1600x600/?house,real-estate') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 4px #000;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--main-color);
+    }
+
+    .properties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .property {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .property:hover {
+      transform: scale(1.02);
+    }
+
+    .property img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .property-info {
+      padding: 1rem;
+    }
+
+    .property-info h4 {
+      margin: 0;
+      color: var(--accent-color);
+    }
+
+    .filter {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter select {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    form input, form textarea {
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    form button {
+      padding: 1rem;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background-color: #d65f12;
+    }
+
+    footer {
+      background-color: var(--main-color);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Inmobiliaria El Hogar</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#propiedades">Propiedades</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <h2>Encuentra la casa de tus sueños</h2>
+  </section>
+
+  <section class="section" id="propiedades">
+    <h3>Propiedades Destacadas</h3>
+
+    <div class="filter">
+      <label for="tipo">Filtrar por tipo: </label>
+      <select id="tipo" onchange="filtrarPropiedades()">
+        <option value="todas">Todas</option>
+        <option value="casa">Casa</option>
+        <option value="departamento">Departamento</option>
+      </select>
+    </div>
+
+    <div class="properties" id="listado-propiedades">
+      <div class="property" data-tipo="casa">
+        <img src="https://source.unsplash.com/400x300/?house" alt="Casa moderna">
+        <div class="property-info">
+          <h4>Casa moderna</h4>
+          <p>3 habitaciones · 2 baños · 150 m²</p>
+        </div>
+      </div>
+
+      <div class="property" data-tipo="departamento">
+        <img src="https://source.unsplash.com/400x300/?apartment" alt="Departamento">
+        <div class="property-info">
+          <h4>Departamento céntrico</h4>
+          <p>2 habitaciones · 1 baño · 85 m²</p>
+        </div>
+      </div>
+
+      <div class="property" data-tipo="casa">
+        <img src="https://source.unsplash.com/400x300/?villa" alt="Villa familiar">
+        <div class="property-info">
+          <h4>Villa familiar</h4>
+          <p>4 habitaciones · 3 baños · 200 m²</p>
+        </div>
+      </div>
+
+      <div class="property" data-tipo="departamento">
+        <img src="https://source.unsplash.com/400x300/?loft" alt="Loft moderno">
+        <div class="property-info">
+          <h4>Loft moderno</h4>
+          <p>1 habitación · 1 baño · 60 m²</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <h3>Contáctanos</h3>
+    <form onsubmit="enviarFormulario(event)">
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="email" name="email" placeholder="Tu correo electrónico" required />
+      <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje" required></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Inmobiliaria El Hogar. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function filtrarPropiedades() {
+      const filtro = document.getElementById("tipo").value;
+      const propiedades = document.querySelectorAll(".property");
+
+      propiedades.forEach(p => {
+        const tipo = p.getAttribute("data-tipo");
+        p.style.display = (filtro === "todas" || filtro === tipo) ? "block" : "none";
+      });
+    }
+
+    function enviarFormulario(event) {
+      event.preventDefault();
+      alert("¡Mensaje enviado! Nos pondremos en contacto contigo pronto.");
+    }
+  </script>
+</body>
+</html>
